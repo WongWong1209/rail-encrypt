@@ -16,7 +16,7 @@ const MainPage = () => {
       });
       return temp;
     });
-  }, [text]);
+  }, [text, tracks]);
 
   const cells = [...text].map((c, index) => {
     let pos;
@@ -47,7 +47,7 @@ const MainPage = () => {
   return (
     <div className='flex flex-col items-center gap-4 w-[100vw]'>
       <h1 className='font-black text-[1.5rem] mt-[1rem]'>
-        Trail Encrypt & Decrypt
+        Rail Encrypt & Decrypt
       </h1>
       <div className='flex flex-col'>
         <label htmlFor='plain-text'>Plain Text:</label>
@@ -60,7 +60,7 @@ const MainPage = () => {
           }}
         />
         <button></button>
-        <label>Trail Number:</label>
+        <label>Track Number:</label>
         <input
           type='number'
           className='border rounded-sm border-white/50 p-1'
