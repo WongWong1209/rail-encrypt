@@ -1,6 +1,11 @@
+"use client";
+
+import { useState } from "react";
+
 const MainPage = () => {
-  let result =
-    "abcdefghijklmnopqrstuvdddddyeuyiefiuhweihiuhowreuigiuheriughiuh";
+  let [result, setResult] = useState(
+    "abcdefghijklmnopqrstuvdddddyeuyiefiuhweihiuhowreuigiuheriughiuh"
+  );
   let trail_number = 4;
 
   const cells = [...result].map((c, index) => {
@@ -14,7 +19,7 @@ const MainPage = () => {
     }
 
     return (
-      <div key={index} className='flex flex-col'>
+      <div key={index} className='flex flex-col mb-[1rem]'>
         {Array.from({ length: trail_number }, (_, i) => (
           <div
             key={`${index}-${i}`}
@@ -35,8 +40,12 @@ const MainPage = () => {
       <div className='flex flex-col'>
         <label htmlFor='plain-text'>Plain Text:</label>
         <textarea
+          spellCheck={false}
           id='plain-text'
           className='border min-w-[30rem] min-h-[10rem] rounded-md border-white/50 p-2'
+          onChange={(e) => {
+            setResult(e.target.value);
+          }}
         />
         <button></button>
         <label>Trail Number:</label>
