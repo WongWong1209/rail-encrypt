@@ -3,14 +3,12 @@
 import { useState } from "react";
 
 const MainPage = () => {
-  let [result, setResult] = useState(
-    "abcdefghijklmnopqrstuvdddddyeuyiefiuhweihiuhowreuigiuheriughiuh"
-  );
+  let [result, setResult] = useState("");
   let trail_number = 4;
 
   const cells = [...result].map((c, index) => {
     let pos;
-    if (Math.floor(index / 3) % 2 === 1) {
+    if (Math.floor(index / (trail_number - 1)) % 2 === 1) {
       // go up
       pos = trail_number - (index % (trail_number - 1)) - 1;
     } else {
@@ -56,12 +54,14 @@ const MainPage = () => {
         />
       </div>
       <div className='flex flex-row gap-3'>
-        <button className='border rounded-lg p-2 cursor-pointer hover:bg-white/10 active:bg-white/20'>
-          Encrypt
-        </button>
-        <button className='border rounded-lg p-2 cursor-pointer hover:bg-white/10 active:bg-white/20'>
-          Decrypt
-        </button>
+        <select className='bg-black text-white border border-gray-500 rounded-lg p-2 cursor-pointer appearance-none'>
+          <option className='bg-black text-white' value='encrypt'>
+            Encrypt
+          </option>
+          <option className='bg-black text-white' value='decrypt'>
+            Decrypt
+          </option>
+        </select>
       </div>
       <div>
         <textarea
