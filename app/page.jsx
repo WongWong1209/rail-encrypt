@@ -1,24 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MainPage = () => {
+  let [text, setText] = useState("");
   let [result, setResult] = useState("");
-  let trail_number = 4;
+  let [tracks, setTrack] = useState(4);
+  let result_text = Array.from({ length: tracks }).fill("");
 
-  const cells = [...result].map((c, index) => {
+  useEffect(() => {
+    setResult(() => {
+      let temp = "";
+      result_text.forEach((e) => {
+        temp += e;
+      });
+      return temp;
+    });
+  }, [text]);
+
+  const cells = [...text].map((c, index) => {
     let pos;
-    if (Math.floor(index / (trail_number - 1)) % 2 === 1) {
+    if (Math.floor(index / (tracks - 1)) % 2 === 1) {
       // go up
-      pos = trail_number - (index % (trail_number - 1)) - 1;
+      pos = tracks - (index % (tracks - 1)) - 1;
     } else {
       // go down
-      pos = index % (trail_number - 1);
+      pos = index % (tracks - 1);
     }
+
+    result_text[pos] += c;
 
     return (
       <div key={index} className='flex flex-col mb-[1rem]'>
-        {Array.from({ length: trail_number }, (_, i) => (
+        {Array.from({ length: tracks }, (_, i) => (
           <div
             key={`${index}-${i}`}
             className='h-8 w-8 flex items-center justify-center border border-white/20'
@@ -42,7 +56,7 @@ const MainPage = () => {
           id='plain-text'
           className='border min-w-[30rem] min-h-[10rem] rounded-md border-white/50 p-2'
           onChange={(e) => {
-            setResult(e.target.value);
+            setText(e.target.value);
           }}
         />
         <button></button>
@@ -51,6 +65,7 @@ const MainPage = () => {
           type='number'
           className='border rounded-sm border-white/50 p-1'
           defaultValue={4}
+          onChange={(e) => setTrack(e.target.value)}
         />
       </div>
       <div className='flex flex-row gap-3'>
@@ -67,6 +82,7 @@ const MainPage = () => {
         <textarea
           readOnly
           className='border min-w-[30rem] min-h-[10rem] rounded-md border-white/50 p-2'
+          value={result}
         />
       </div>
       <div className='flex flex-row flex-wrap max-w-[80vw]'>{cells}</div>
