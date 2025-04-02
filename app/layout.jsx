@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Trail Encrypt",
+  title: "Rail Encrypt",
   description: "for midterm",
 };
 
