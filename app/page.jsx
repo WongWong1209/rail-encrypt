@@ -96,7 +96,7 @@ const MainPage = () => {
   });
 
   return (
-    <div className='flex flex-col items-center gap-4 w-[100vw]'>
+    <div className='flex flex-col items-center gap-4 w-fit max-w-[90vw]'>
       <h1 className='font-black text-[1.5rem] mt-[1rem]'>
         Rail Encrypt & Decrypt
       </h1>
@@ -105,7 +105,7 @@ const MainPage = () => {
         <textarea
           spellCheck={false}
           id='plain-text'
-          className='border min-w-[30rem] min-h-[10rem] rounded-md border-white/50 p-2'
+          className='border w-[30rem] min-h-[10rem] rounded-md border-white/50 p-2 max-w-[90vw]'
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
@@ -138,7 +138,7 @@ const MainPage = () => {
         <label>Result:</label>
         <textarea
           readOnly
-          className='border min-w-[30rem] min-h-[10rem] rounded-md border-white/50 p-2'
+          className='border w-[30rem] min-h-[10rem] rounded-md border-white/50 p-2 max-w-[90vw]'
           value={result}
         />
         <button
