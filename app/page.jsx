@@ -9,7 +9,6 @@ const MainPage = () => {
   const [mode, setMode] = useState("encrypt");
   const [cellResource, setCellResource] = useState("");
 
-  // Encryption/Decryption logic
   useEffect(() => {
     if (!text) {
       setResult("");
@@ -35,7 +34,7 @@ const MainPage = () => {
       let row = 0;
       let step = 1;
 
-      // First pass: calculate lengths
+      // Calculate lengths
       for (let i = 0; i < text.length; i++) {
         rowLengths[row]++;
         if (row === 0) step = 1;
