@@ -29,12 +29,11 @@ const MainPage = () => {
       setResult(resultText.join(""));
       setCellResource(text);
     } else if (mode === "decrypt") {
-      // Calculate lengths of each row
       const rowLengths = Array(tracks).fill(0);
       let row = 0;
       let step = 1;
 
-      // Calculate lengths
+      // calculate length of each row
       for (let i = 0; i < text.length; i++) {
         rowLengths[row]++;
         if (row === 0) step = 1;
@@ -42,7 +41,7 @@ const MainPage = () => {
         row += step;
       }
 
-      // Split text into rows
+      // split text into rows
       const rows = [];
       let start = 0;
       for (let i = 0; i < tracks; i++) {
@@ -50,7 +49,7 @@ const MainPage = () => {
         start += rowLengths[i];
       }
 
-      // Reconstruct original text
+      // reconstruct original text
       let decrypted = "";
       row = 0;
       step = 1;
