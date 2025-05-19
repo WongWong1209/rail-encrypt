@@ -63,7 +63,7 @@ export default function ECCDots() {
 
     // 選定基點 G
     const G = { x: 15, y: 13 };
-    const multiples = getMultiples(G, 17, p, true);
+    const multiples = getMultiples(G, 17, p);
 
     // 畫倍點
     ctx.fillStyle = "red";
