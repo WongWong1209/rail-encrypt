@@ -58,7 +58,7 @@ export default function ECCLine() {
 
   return (
     <div className='flex justify-center mt-4'>
-      <canvas ref={canvasRef} width={500} height={500} className='w-[25rem]' />
+      <canvas ref={canvasRef} width={500} height={500} className='w-[50rem]' />
     </div>
   );
 }

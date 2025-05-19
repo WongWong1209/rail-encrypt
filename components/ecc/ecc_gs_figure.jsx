@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import { getCurvePoints, getMultiples } from "@/lib/ecc_calculate";
 
-export default function ECCDots() {
+export default function ECCDots({ publicKey }) {
   const canvasRef = useRef(null);
 
   const p = 17; //mod
@@ -66,24 +66,32 @@ export default function ECCDots() {
     const multiples = getMultiples(G, 17, p);
 
     // 畫倍點
-    ctx.fillStyle = "red";
     multiples.forEach((point, i) => {
-      if (point === null) return; // Skip point at infinity
+      if (point === null) return;
+
+      let isKey = publicKey
+        ? point.x === publicKey.x && point.y === publicKey.y
+        : false;
+
+      if (isKey) ctx.fillStyle = "cyan";
+      else ctx.fillStyle = "red";
+
       const cx = point.x * cell + canvasSize - size;
       const cy = (p + 1 - point.y) * cell;
       ctx.beginPath();
-      ctx.arc(cx, cy, 5, 0, 2 * Math.PI);
+      if (isKey) ctx.arc(cx, cy, 10, 0, 2 * Math.PI);
+      else ctx.arc(cx, cy, 5, 0, 2 * Math.PI);
       ctx.fill();
 
       ctx.fillStyle = "yellow";
       ctx.fillText(`${i + 1}G`, cx + 6, cy - 6);
       ctx.fillStyle = "red";
     });
-  }, []);
+  }, [publicKey]);
 
   return (
     <div className='flex justify-center mt-4'>
-      <canvas ref={canvasRef} width={500} height={500} className='w-[25rem]' />
+      <canvas ref={canvasRef} width={500} height={500} className='w-[50rem]' />
     </div>
   );
 }
